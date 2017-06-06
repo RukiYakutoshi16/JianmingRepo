@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour {
         else {
             jump = false;
         }
+
+      
+
     }
 
     void FixedUpdate () {
@@ -67,7 +70,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnCollisionStay2D(Collision2D collision) {
-        grounded = true;
+      grounded = true;   
     }
 
     void OnCollisionExit2D(Collision2D collision) {
@@ -76,6 +79,18 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool IsGrounded() {
         return true; 
+    }
+
+    bool checkPlayerHeightPlatform(GameObject platform) {
+        float playerHeight = transform.position.y-.5f ;
+        float platformHeight = platform.transform.position.y+.5f ;
+
+        if(playerHeight < platformHeight) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
 }
