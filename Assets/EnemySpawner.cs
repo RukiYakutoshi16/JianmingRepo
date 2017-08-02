@@ -25,8 +25,9 @@ public class EnemySpawner : MonoBehaviour {
         }
         else {
             //spawn an enemy
-            //instantiated at x coordinate: random int between -10 and 10, and y coordinate: player y + 40
-            Instantiate(enemyPrefab, new Vector3(Random.Range(-10, 10), player.position.y + 40, -1), Quaternion.identity); 
+            //instantiated at x coordinate (for 21 by 40 panel): random int between -10 and 10, and y coordinate: player y + 40
+            //modified for 24 by 40 BGPanel: random int [-12, 12) + 0.5, and y coordinate: player + 40
+            Instantiate(enemyPrefab, new Vector3(Random.Range(-12, 12) + 0.5f, player.position.y + 40, -1), Quaternion.identity); 
 
             //reset the timer
             timer = enemyRespawnTime;

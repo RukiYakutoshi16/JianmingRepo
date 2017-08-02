@@ -8,7 +8,11 @@ public class BGLooper : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision) {
         //when BGLooper hits the background panel, get its height
-        float heightOfBGObject = collision.transform.localScale.y; 
+        //float heightOfBGObject = collision.transform.localScale.y;
+
+        //corrected for y scale of BGPanel being 42 instead of 40
+        float heightOfBGObject = 40f; 
+
 
         Vector3 pos = collision.transform.position;
 

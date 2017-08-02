@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour {
     public bool grounded; 
 
     void Start () {
-        GetComponent<Rigidbody2D>().freezeRotation = true; 
-	}
+        GetComponent<Rigidbody2D>().freezeRotation = true;
+        GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+    }
 
     void Update() {
         if (Input.GetButton("Horizontal")) {
@@ -32,9 +33,6 @@ public class PlayerMovement : MonoBehaviour {
         else {
             jump = false;
         }
-
-      
-
     }
 
     void FixedUpdate () {
@@ -81,9 +79,10 @@ public class PlayerMovement : MonoBehaviour {
         return true; 
     }
 
+    //checks whether player touches a platform from below or from above
     bool checkPlayerHeightPlatform(GameObject platform) {
-        float playerHeight = transform.position.y-.5f ;
-        float platformHeight = platform.transform.position.y+.5f ;
+        float playerHeight = transform.position.y - 0.5f ;
+        float platformHeight = platform.transform.position.y + 0.5f ;
 
         if(playerHeight < platformHeight) {
             return false;

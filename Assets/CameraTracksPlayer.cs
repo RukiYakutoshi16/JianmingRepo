@@ -23,6 +23,11 @@ public class CameraTracksPlayer : MonoBehaviour {
         if (player.transform.position.y < transform.position.y - 5 && transform.position.y > minCameraHeight) {
             transform.position = new Vector3(0, player.transform.position.y + 5, -10);
         }
+        
+        //if for some reason the y transform of the camera is less than minCameraHeight, set it equal to minCameraHeight
+        if(transform.position.y < minCameraHeight) {
+            transform.position = new Vector3(0, minCameraHeight, -10);
+        }
 	}
 
 }

@@ -6,26 +6,21 @@ public class PlatformScript : MonoBehaviour {
 
     public GameObject[] bricks;
 
-	// Use this for initialization
 	void Start () {
         GetAllChildren();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void OnTriggerEnter2D(Collider2D other) {
-        //turn ignore on
+        //ignore collisions between player and bricks[]
         IgnoreBrickCollision(other, true);
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        //turn ignore off
+        //undo the ignore collisions between player and bricks[]
         IgnoreBrickCollision(other, false);
     }
 
+    //a one-way platform is made of bricks, get all the brick GameObjects and stash them in the bricks[]
     void GetAllChildren() {
         int i = 0; 
         foreach(Transform child in gameObject.transform) {
@@ -34,9 +29,12 @@ public class PlatformScript : MonoBehaviour {
         }
     }
 
+    //collisions between player and everything in bricks[] will be set to argument ignore
     void IgnoreBrickCollision(Collider2D player, bool ignore) {
         foreach(GameObject brick in bricks) {
-            Physics2D.IgnoreCollision(brick.GetComponent<BoxCollider2D>(), player.gameObject.GetComponent<EdgeCollider2D>(), ignore);
+            if (brick.GetComponent<EdgeCollider2D>().enabled == true) {
+                Physics2D.IgnoreCollision(brick.GetComponent<EdgeCollider2D>(), player.gameObject.GetComponent<BoxCollider2D>(), ignore);
+            }
         }
     }
 }

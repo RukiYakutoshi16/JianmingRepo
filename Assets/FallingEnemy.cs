@@ -13,4 +13,11 @@ public class FallingEnemy : MonoBehaviour {
 		
 	}
 
+    void OnCollisionEnter2D(Collision2D collision) {
+        //if collsition with a brick object, destroy the brick
+        if (collision.gameObject.tag == "Brick") {
+            collision.gameObject.GetComponent<BrickScript>().DestroySelf();
+        }
+    }
+
 }
